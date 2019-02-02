@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-0
+  namespace: istio-grpc-example
+  labels:
+    app: backend-0
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+      version: "0"
+  template:
+    metadata:
+      labels:
+        app: backend
+        version: "0"
+    spec:
+      containers:
+        - name: python
+          image: h3poteto/grpc_example-server-python:master
+          imagePullPolicy: Always
+          ports:
+            - name: grpc
+              containerPort: 9090
+              protocol: TCP
+          env:
+            - name: SERVER_IP
+              value: 0.0.0.0
+            - name: SERVER_PORT
+              value: "9090"

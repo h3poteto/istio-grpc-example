@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: istio-grpc-example
+  labels:
+    app: backend
+spec:
+  ports:
+  - port: 50051
+    targetPort: 9090
+    protocol: TCP
+    name: grpc
+  selector:
+    app: backend

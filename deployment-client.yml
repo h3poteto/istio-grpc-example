@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-0
+  namespace: istio-grpc-example
+  labels:
+    app: client-0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+      version: "0"
+  template:
+    metadata:
+      labels:
+        app: client
+        version: "0"
+    spec:
+      containers:
+        - name: python
+          image: h3poteto/grpc_example-client-python:master
+          imagePullPolicy: Always
+          env:
+            - name: SERVER_IP
+              value: "backend"
+            - name: SERVER_PORT
+              value: "50051"
