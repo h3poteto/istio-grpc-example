@@ -10,6 +10,8 @@ spec:
   - port: 50051
     targetPort: 9090
     protocol: TCP
-    name: grpc
+    # Port name is very important: https://istio.io/docs/reference/config/istio.networking.v1alpha3/#VirtualService
+    # HTTP routes will be applied to platform service ports named ‘http-’/‘http2-’/‘grpc-*’
+    name: grpc-backend
   selector:
     app: backend
