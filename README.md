@@ -1,4 +1,4 @@
-# istio-http-example
+# istio-grpc-example
 
 ## Prepare
 ### kubernetes
